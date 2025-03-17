@@ -1,187 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Evans Portfolio</title>
-        <link rel="stylesheet" href="style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    </head>
-    <body>
-        
-        <div class="main">
-           <div class="navbar">
-            <img src="pic1.jpeg" class="logo">
-            
+<head>
+    <title>Evans Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
+        .main {
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5)50%, rgba(0,0,0,0.5)50%), url(pic1.jpeg);
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            position: relative;
+        }
+
+        .navbar {
+            width: 1200px;
+            height: 75px;
+            margin: auto;
+        }
+
+        .icon {
+            width: 200px;
+            float: left;
+            height: 70px;
+        }
+
+        .logo {
+            color: #ff7200;
+            font-size: 35px;
+            font-family: Arial;
+            padding-left: 20px;
+            float: left;
+            padding-top: 10px;
+        }
+
+        .navbar ul {
+            float: right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .navbar ul li {
+            list-style: none;
+            margin-left: 62px;
+            margin-top: 27px;
+            font-size: 14px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-family: Arial;
+            font-weight: bold;
+            transition: 0.4s ease-in-out;
+        }
+
+        .navbar ul li a:hover {
+            color: #ff7200;
+        }
+
+        .info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .info h3 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .info h1 {
+            font-size: 50px;
+            margin-bottom: 30px;
+        }
+
+        .info a {
+            text-decoration: none;
+            display: inline-block;
+            color: white;
+            background: #ff7200;
+            padding: 10px 30px;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .info a:hover {
+            background: #fff;
+            color: #ff7200;
+        }
+
+        /* Filter and Portfolio Styles */
+        .filter-buttons {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: none;
+            background: #333;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #ff7200;
+        }
+
+        .filter-btn.active {
+            background: #ff7200;
+        }
+
+        .portfolio-item {
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .portfolio-item .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-item img {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .project-details {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .project-details h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* About Section Styles */
+        #about {
+            background: white;
+            padding: 60px 0;
+        }
+
+        #about img {
+            max-width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Projects Section Styles */
+        #projects {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="logo">EVAN</div>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">My skills</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">My skills</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-           </div>
-
-           <div class="info">
-            <h3>Hello, Im Evan</h3>
-            <h1>I am social meida specialist</h1>
-            <a href="#">Please Hire Me</a>
-
-            </div>
-            <!-- About Me Section -->
-
-<section id="about" class="container mt-5">
-
-    <h2 class="text-center">About Me</h2>
-
-    <div class="row align-items-center">
-
-        <div class="col-md-4 text-center">
-
-            <img src="pic3.jpg" class="img-fluid rounded-circle" alt="Evan's Photo" width="200">
-
         </div>
 
-        <div class="col-md-8">
-
-            <p>
-
-                I'm Evan, a passionate **Social Media Specialist** based in Minnesota. 
-
-                I help businesses grow their brand through **strategic content creation** and **social media marketing**.
-
-            </p>
-
-            <a href="#contact" class="btn btn-primary">Get in Touch</a>
-
+        <div class="info">
+            <h3>Hello, I'm Evan</h3>
+            <h1>I am a social media specialist</h1>
+            <a href="#contact">Please Hire Me</a>
         </div>
-
     </div>
 
-</section>
+    <!-- About Section -->
+    <section id="about" class="container mt-5">
+        <h2 class="text-center">About Me</h2>
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                <img src="pic3.jpg" class="img-fluid rounded-circle" alt="Evan's Photo" width="200">
+            </div>
+            <div class="col-md-8">
+                <p>
+                    I'm Evan, a passionate Social Media Specialist based in Minnesota.
+                    I help businesses grow their brand through strategic content creation and social media marketing.
+                </p>
+                <a href="#contact" class="btn btn-primary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
 
+    <!-- Projects Section -->
+    <section id="projects" class="container mt-5">
+        <h2 class="text-center mb-4">My Projects</h2>
+
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="social">Social Media</button>
+            <button class="filter-btn" data-filter="campaign">Campaigns</button>
+            <button class="filter-btn" data-filter="influencer">Influencer</button>
         </div>
 
-        <!-- Projects Section -->
-
-<section id="projects" class="container mt-5">
-
-    <h2 class="text-center mb-4">My Projects</h2>
-
-    <div class="row">
-
-        <!-- Project 1 -->
-
-        <div class="col-md-4">
-
-            <div class="card">
-
-                <img src="pic4.jpeg" class="card-img-top" alt="Project 1">
-
-                <div class="card-body">
-
-                    <h5 class="card-title">Project One</h5>
-
-                    <p class="card-text">A social media campaign that increased engagement by 50%.</p>
-
-                    <a href="#" class="btn btn-primary">View Project</a>
-
+        <div class="row">
+            <!-- Project 1 -->
+            <div class="col-md-4 portfolio-item" data-category="social">
+                <div class="card">
+                    <img src="pic4.jpeg" class="card-img-top" alt="Project 1"
+                         data-title="Social Media Campaign"
+                         data-description="A social media campaign that increased engagement by 50%.">
+                    <div class="card-body">
+                        <h5 class="card-title">Project One</h5>
+                        <p class="card-text">A social media campaign that increased engagement by 50%.</p>
+                    </div>
                 </div>
-
             </div>
 
-        </div>
-
- 
-
-        <!-- Project 2 -->
-
-        <div class="col-md-4">
-
-            <div class="card">
-
-                <img src="pic5.jpeg" class="card-img-top" alt="Project 2">
-
-                <div class="card-body">
-
-                    <h5 class="card-title">Project Two</h5>
-
-                    <p class="card-text">Created a successful ad campaign for a local business.</p>
-
-                    <a href="#" class="btn btn-primary">View Project</a>
-
+            <!-- Project 2 -->
+            <div class="col-md-4 portfolio-item" data-category="campaign">
+                <div class="card">
+                    <img src="pic5.jpeg" class="card-img-top" alt="Project 2"
+                         data-title="Ad Campaign"
+                         data-description="Created a successful ad campaign for a local business.">
+                    <div class="card-body">
+                        <h5 class="card-title">Project Two</h5>
+                        <p class="card-text">Created a successful ad campaign for a local business.</p>
+                    </div>
                 </div>
-
             </div>
 
-        </div>
-
- 
-
-        <!-- Project 3 -->
-
-        <div class="col-md-4">
-
-            <div class="card">
-
-                <img src="pic6.jpeg" class="card-img-top" alt="Project 3">
-
-                <div class="card-body">
-
-                    <h5 class="card-title">Project Three</h5>
-
-                    <p class="card-text">Managed influencer partnerships for brand outreach.</p>
-
-                    <a href="#" class="btn btn-primary">View Project</a>
-
+            <!-- Project 3 -->
+            <div class="col-md-4 portfolio-item" data-category="influencer">
+                <div class="card">
+                    <img src="pic6.jpeg" class="card-img-top" alt="Project 3"
+                         data-title="Influencer Partnerships"
+                         data-description="Managed influencer partnerships for brand outreach.">
+                    <div class="card-body">
+                        <h5 class="card-title">Project Three</h5>
+                        <p class="card-text">Managed influencer partnerships for brand outreach.</p>
+                    </div>
                 </div>
-
             </div>
-
         </div>
+    </section>
 
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img src="" alt="" class="img-fluid">
+            <div class="project-details">
+                <h2></h2>
+                <p></p>
+            </div>
+        </div>
     </div>
 
-</section>
+    <!-- Footer -->
+    <footer class="text-center py-3">
+        <p>© 2024 Evan's Portfolio | All Rights Reserved</p>
+    </footer>
 
-<!-- Modal for Project 1 -->
+    <script>
+        $(document).ready(function() {
+            // Filter functionality
+            $('.filter-btn').on('click', function() {
+                const filter = $(this).data('filter');
 
-<div class="modal fade" id="projectModal1" tabindex="-1" aria-labelledby="projectModal1Label" aria-hidden="true">
+                // Update active button
+                $('.filter-btn').removeClass('active');
+                $(this).addClass('active');
 
-    <div class="modal-dialog">
+                // Filter items
+                if (filter === 'all') {
+                    $('.portfolio-item').fadeIn(300);
+                } else {
+                    $('.portfolio-item').hide();
+                    $('.portfolio-item[data-category="' + filter + '"]').fadeIn(300);
+                }
+            });
 
-        <div class="modal-content">
+            // Lightbox functionality
+            $('.portfolio-item').on('click', function() {
+                const img = $(this).find('img');
+                const title = img.data('title');
+                const description = img.data('description');
 
-            <div class="modal-header">
+                // Create a deferred object
+                const imageLoaded = $.Deferred();
 
-                <h5 class="modal-title" id="projectModal1Label">Project One Details</h5>
+                // Create a new image object
+                const largeImage = new Image();
+                largeImage.src = img.attr('src');
 
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                // When image is loaded, resolve the deferred object
+                largeImage.onload = function() {
+                    imageLoaded.resolve();
+                };
 
-            </div>
+                // When deferred object is resolved, show the lightbox
+                $.when(imageLoaded).then(function() {
+                    $('.lightbox img').attr('src', img.attr('src'));
+                    $('.project-details h2').text(title);
+                    $('.project-details p').text(description);
+                    $('.lightbox').fadeIn(300);
+                });
+            });
 
-            <div class="modal-body">
+            // Close lightbox
+            $('.lightbox-close, .lightbox').on('click', function(e) {
+                if ($(e.target).hasClass('lightbox') || $(e.target).hasClass('lightbox-close')) {
+                    $('.lightbox').fadeOut(300);
+                }
+            });
 
-                This project involved launching a social media campaign that boosted engagement by 50% within three months. It included targeted ads, influencer partnerships, and analytics tracking.
-
-            </div>
-
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-        <!-- Footer Section -->
-
-<footer class="bg-light text-center py-3 mt-5">
-
-    <p>© 2024 Evan's Portfolio | All Rights Reserved</p>
-
-</footer>
-    </body>
-    </html>
+            // Prevent lightbox from closing when clicking inside content
+            $('.lightbox-content').on('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>
